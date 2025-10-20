@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.linus.dot-crypto-ticker</string>
+    
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/faxinxu/Desktop/MarkBook/target/release/dot_btc_ticker</string>
+    </array>
+    
+    <key>WorkingDirectory</key>
+    <string>/Users/faxinxu/Desktop/MarkBook</string>
+    
+    <key>RunAtLoad</key>
+    <true/>
+    
+    <key>KeepAlive</key>
+    <true/>
+    
+    <key>StandardOutPath</key>
+    <string>/Users/faxinxu/Desktop/MarkBook/crypto-ticker.log</string>
+    
+    <key>StandardErrorPath</key>
+    <string>/Users/faxinxu/Desktop/MarkBook/crypto-ticker-error.log</string>
+    
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+</dict>
+</plist>

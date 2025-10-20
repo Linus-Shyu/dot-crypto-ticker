@@ -139,6 +139,65 @@ cargo test
 RUST_LOG=debug cargo run
 ```
 
+## 🔄 24/7 Background Running
+
+For continuous operation, you can set up the application to run as a background service on macOS using LaunchAgent.
+
+### Setup Background Service
+
+1. **Build the release version:**
+```bash
+cargo build --release
+```
+
+2. **Create LaunchAgent configuration:**
+```bash
+# Create LaunchAgents directory if it doesn't exist
+mkdir -p ~/Library/LaunchAgents
+
+# Copy the provided plist file to LaunchAgents
+cp com.linus.dot-crypto-ticker.plist ~/Library/LaunchAgents/
+```
+
+3. **Load and start the service:**
+```bash
+# Load the service
+launchctl load ~/Library/LaunchAgents/com.linus.dot-crypto-ticker.plist
+
+# Start the service
+launchctl start com.linus.dot-crypto-ticker
+```
+
+### Service Management
+
+| Command | Description |
+|---------|-------------|
+| `launchctl list \| grep dot-crypto` | Check service status |
+| `launchctl start com.linus.dot-crypto-ticker` | Start the service |
+| `launchctl stop com.linus.dot-crypto-ticker` | Stop the service |
+| `launchctl unload ~/Library/LaunchAgents/com.linus.dot-crypto-ticker.plist` | Unload service completely |
+
+### Logs
+
+- **Normal logs**: `crypto-ticker.log`
+- **Error logs**: `crypto-ticker-error.log`
+
+```bash
+# View real-time logs
+tail -f crypto-ticker.log
+
+# View error logs
+tail -f crypto-ticker-error.log
+```
+
+### Features
+
+- ✅ **Auto-start**: Starts automatically on system boot
+- ✅ **Auto-restart**: Automatically restarts if the application crashes
+- ✅ **Background**: Runs in the background without terminal window
+- ✅ **Logging**: Comprehensive logging for monitoring and debugging
+- ✅ **System Integration**: Uses macOS native service management
+
 ## 📋 Requirements
 
 - **Rust**: 1.70 or later

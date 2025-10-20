@@ -201,10 +201,10 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📊 Project Stats
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/dot-crypto-ticker)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/dot-crypto-ticker)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/dot-crypto-ticker)
-![License](https://img.shields.io/github/license/yourusername/dot-crypto-ticker)
+![GitHub stars](https://img.shields.io/github/stars/Linus-Shyu/dot-crypto-ticker)
+![GitHub forks](https://img.shields.io/github/forks/Linus-Shyu/dot-crypto-ticker)
+![GitHub issues](https://img.shields.io/github/issues/Linus-Shyu/dot-crypto-ticker)
+![License](https://img.shields.io/github/license/Linus-Shyu/dot-crypto-ticker)
 
 ---
 

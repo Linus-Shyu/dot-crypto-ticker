@@ -250,6 +250,17 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - [Binance](https://binance.com/) for reliable cryptocurrency data
 - [Rust](https://rust-lang.org/) community for excellent tooling
 
+## 📈 Changelog
+
+### v1.0.0 (2024-10-20)
+- 🎉 **Initial stable release**
+- ✨ Multi-cryptocurrency support (BTC, ETH, USDT)
+- 📱 Optimized Mini mode for Dot device screens
+- 🔄 24/7 background running with LaunchAgent
+- 📊 Real-time price change indicators
+- 🔒 Secure environment-based configuration
+- 📝 Comprehensive documentation and setup guides
+
 ## 📈 Roadmap
 
 - [ ] Support for more cryptocurrencies

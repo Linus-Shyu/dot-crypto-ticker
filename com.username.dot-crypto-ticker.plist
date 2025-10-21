@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.linus.dot-crypto-ticker</string>
+    <string>com.username.dot-crypto-ticker</string>
     
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/faxinxu/Desktop/MarkBook/target/release/dot_btc_ticker</string>
+        <string>/Users/username/Desktop/MarkBook/target/release/dot_btc_ticker</string>
     </array>
     
     <key>WorkingDirectory</key>
-    <string>/Users/faxinxu/Desktop/MarkBook</string>
+    <string>/Users/username/Desktop/MarkBook</string>
     
     <key>RunAtLoad</key>
     <true/>
@@ -20,10 +20,10 @@
     <true/>
     
     <key>StandardOutPath</key>
-    <string>/Users/faxinxu/Desktop/MarkBook/crypto-ticker.log</string>
+    <string>/Users/username/Desktop/MarkBook/crypto-ticker.log</string>
     
     <key>StandardErrorPath</key>
-    <string>/Users/faxinxu/Desktop/MarkBook/crypto-ticker-error.log</string>
+    <string>/Users/username/Desktop/MarkBook/crypto-ticker-error.log</string>
     
     <key>EnvironmentVariables</key>
     <dict>

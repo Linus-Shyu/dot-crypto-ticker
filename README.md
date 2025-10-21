@@ -1,15 +1,21 @@
-# Dot Crypto Ticker
+# 📱 Dot Crypto Ticker
 
-A lightweight Rust application that displays real-time cryptocurrency prices on your Dot device. Perfect for monitoring BTC, ETH, and USDT prices with a clean, compact interface optimized for small screens.
+> A lightweight Rust application that displays real-time cryptocurrency prices on your Dot device
+
+[![GitHub stars](https://img.shields.io/github/stars/Linus-Shyu/dot-crypto-ticker)](https://github.com/Linus-Shyu/dot-crypto-ticker)
+[![GitHub forks](https://img.shields.io/github/forks/Linus-Shyu/dot-crypto-ticker)](https://github.com/Linus-Shyu/dot-crypto-ticker)
+[![GitHub issues](https://img.shields.io/github/issues/Linus-Shyu/dot-crypto-ticker)](https://github.com/Linus-Shyu/dot-crypto-ticker)
+[![License](https://img.shields.io/github/license/Linus-Shyu/dot-crypto-ticker)](https://github.com/Linus-Shyu/dot-crypto-ticker)
 
 ## ✨ Features
 
-- **🪙 Multi-Crypto Support**: Bitcoin (BTC), Ethereum (ETH), and Tether (USDT)
-- **📱 Optimized Display**: Mini mode designed specifically for Dot device screens
-- **📊 Price Changes**: Real-time 24-hour price change indicators with trend arrows
-- **⚡ Fast Updates**: Configurable refresh intervals (default: 10 minutes)
-- **🔒 Secure**: Environment-based configuration for API keys
-- **🌐 Reliable**: Uses Binance API for accurate, real-time data
+- 🪙 **Multi-Crypto Support**: Bitcoin (BTC), Ethereum (ETH), and Tether (USDT)
+- 📱 **Optimized Display**: Mini mode designed specifically for Dot device screens
+- 📊 **Real-time Updates**: Live 24-hour price change indicators with trend arrows
+- ⚡ **Configurable**: Customizable refresh intervals (default: 10 minutes)
+- 🔒 **Secure**: Environment-based configuration for API keys
+- 🌐 **Reliable**: Uses Binance API for accurate, real-time data
+- 🔄 **24/7 Running**: Background service support for continuous operation
 
 ## 🚀 Quick Start
 
@@ -23,13 +29,13 @@ A lightweight Rust application that displays real-time cryptocurrency prices on 
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/dot-crypto-ticker.git
+git clone https://github.com/Linus-Shyu/dot-crypto-ticker.git
 cd dot-crypto-ticker
 ```
 
 2. **Install dependencies:**
 ```bash
-cargo build
+cargo build --release
 ```
 
 3. **Configure your environment:**
@@ -115,6 +121,67 @@ cargo run
 
 The application will start fetching prices and displaying them on your Dot device every 10 minutes.
 
+## 🔄 24/7 Background Running
+
+For continuous operation, set up the application to run as a background service on macOS.
+
+### Setup Background Service
+
+1. **Build the release version:**
+```bash
+cargo build --release
+```
+
+2. **Create LaunchAgent configuration:**
+```bash
+# Create LaunchAgents directory if it doesn't exist
+mkdir -p ~/Library/LaunchAgents
+
+# Copy the provided plist file to LaunchAgents
+cp com.username.dot-crypto-ticker.plist ~/Library/LaunchAgents/
+```
+
+3. **Edit the plist file with your actual username and paths**
+
+4. **Load and start the service:**
+```bash
+# Load the service
+launchctl load ~/Library/LaunchAgents/com.username.dot-crypto-ticker.plist
+
+# Start the service
+launchctl start com.username.dot-crypto-ticker
+```
+
+### Service Management
+
+| Command | Description |
+|---------|-------------|
+| `launchctl list \| grep dot-crypto` | Check service status |
+| `launchctl start com.username.dot-crypto-ticker` | Start the service |
+| `launchctl stop com.username.dot-crypto-ticker` | Stop the service |
+| `launchctl unload ~/Library/LaunchAgents/com.username.dot-crypto-ticker.plist` | Unload service completely |
+
+### Logs
+
+- **Normal logs**: `crypto-ticker.log`
+- **Error logs**: `crypto-ticker-error.log`
+
+```bash
+# View real-time logs
+tail -f crypto-ticker.log
+
+# View error logs
+tail -f crypto-ticker-error.log
+```
+
+### Features
+
+- ✅ **Auto-start**: Starts automatically on system boot
+- ✅ **Auto-restart**: Automatically restarts if the application crashes
+- ✅ **Background**: Runs in the background without terminal window
+- ✅ **Logging**: Comprehensive logging for monitoring and debugging
+- ✅ **System Integration**: Uses macOS native service management
+
 ## 🛠️ Development
 
 ### Building
@@ -139,65 +206,6 @@ cargo test
 RUST_LOG=debug cargo run
 ```
 
-## 🔄 24/7 Background Running
-
-For continuous operation, you can set up the application to run as a background service on macOS using LaunchAgent.
-
-### Setup Background Service
-
-1. **Build the release version:**
-```bash
-cargo build --release
-```
-
-2. **Create LaunchAgent configuration:**
-```bash
-# Create LaunchAgents directory if it doesn't exist
-mkdir -p ~/Library/LaunchAgents
-
-# Copy the provided plist file to LaunchAgents
-cp com.linus.dot-crypto-ticker.plist ~/Library/LaunchAgents/
-```
-
-3. **Load and start the service:**
-```bash
-# Load the service
-launchctl load ~/Library/LaunchAgents/com.linus.dot-crypto-ticker.plist
-
-# Start the service
-launchctl start com.linus.dot-crypto-ticker
-```
-
-### Service Management
-
-| Command | Description |
-|---------|-------------|
-| `launchctl list \| grep dot-crypto` | Check service status |
-| `launchctl start com.linus.dot-crypto-ticker` | Start the service |
-| `launchctl stop com.linus.dot-crypto-ticker` | Stop the service |
-| `launchctl unload ~/Library/LaunchAgents/com.linus.dot-crypto-ticker.plist` | Unload service completely |
-
-### Logs
-
-- **Normal logs**: `crypto-ticker.log`
-- **Error logs**: `crypto-ticker-error.log`
-
-```bash
-# View real-time logs
-tail -f crypto-ticker.log
-
-# View error logs
-tail -f crypto-ticker-error.log
-```
-
-### Features
-
-- ✅ **Auto-start**: Starts automatically on system boot
-- ✅ **Auto-restart**: Automatically restarts if the application crashes
-- ✅ **Background**: Runs in the background without terminal window
-- ✅ **Logging**: Comprehensive logging for monitoring and debugging
-- ✅ **System Integration**: Uses macOS native service management
-
 ## 📋 Requirements
 
 - **Rust**: 1.70 or later
@@ -219,7 +227,7 @@ tail -f crypto-ticker-error.log
 
 ### Getting Help
 
-- 📖 Check the [Issues](https://github.com/yourusername/dot-crypto-ticker/issues) page
+- 📖 Check the [Issues](https://github.com/Linus-Shyu/dot-crypto-ticker/issues) page
 - 📚 Review the [Dot API Documentation](https://dot.mindreset.tech/docs/service/studio/api/text_api)
 - 💬 Open a new issue for bugs or feature requests
 
@@ -268,13 +276,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - [ ] Historical price charts
 - [ ] Multiple Dot device support
 - [ ] Web dashboard for configuration
-
-## 📊 Project Stats
-
-![GitHub stars](https://img.shields.io/github/stars/Linus-Shyu/dot-crypto-ticker)
-![GitHub forks](https://img.shields.io/github/forks/Linus-Shyu/dot-crypto-ticker)
-![GitHub issues](https://img.shields.io/github/issues/Linus-Shyu/dot-crypto-ticker)
-![License](https://img.shields.io/github/license/Linus-Shyu/dot-crypto-ticker)
 
 ---
 

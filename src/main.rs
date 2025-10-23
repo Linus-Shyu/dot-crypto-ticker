@@ -2,11 +2,13 @@ use anyhow::{Context, Result};
 use clap::Parser;
 use dotenvy::dotenv;
 use reqwest::header::{AUTHORIZATION, CONTENT_TYPE};
+use reqwest::Client;
 use serde::{Deserialize, Serialize};
-use std::env;
-use std::time::Duration;
 use tokio::{runtime, time::sleep};
 use tracing::{error, info};
+
+use std::env;
+use std::time::Duration;
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Crypto Price Ticker for Dot Device - BTC, ETH, USDT")]
@@ -17,21 +19,21 @@ struct Args {
 }
 
 #[derive(Serialize)]
-struct DotTextPayload<'a> {
+struct DotTextPayload {
     #[serde(rename = "refreshNow", skip_serializing_if = "Option::is_none")]
     refresh_now: Option<bool>,
     #[serde(rename = "deviceId")]
-    device_id: &'a str,
+    device_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    title: Option<&'a str>,
+    title: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     message: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     signature: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    icon: Option<&'a str>,
+    icon: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    link: Option<&'a str>,
+    link: Option<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -117,19 +119,19 @@ async fn fetch_crypto_prices_binance(client: &reqwest::Client) -> Result<Vec<Pri
 }
 
 async fn send_to_dot_text_api(
-    client: &reqwest::Client,
+    client: &Client,
     api_key: &str,
     device_id: &str,
     title: &str,
-    message: String,
-    signature: String,
+    message: &str,
+    signature: &str,
 ) -> Result<()> {
     let payload = DotTextPayload {
         refresh_now: Some(true),
-        device_id: device_id,
-        title: Some(title),
-        message: Some(message),
-        signature: Some(signature),
+        device_id: device_id.to_string(),
+        title: Some(title.to_string()),
+        message: Some(message.to_string()),
+        signature: Some(signature.to_string()),
         icon: None,
         link: None,
     };
@@ -261,7 +263,7 @@ fn main() -> Result<()> {
                             format!("Updated at {}", chrono::Local::now().format("%H:%M"));
 
                         if let Err(e) = send_to_dot_text_api(
-                            &http, &api_key, &device_id, &title, message, signature,
+                            &http, &api_key, &device_id, &title, &message, &signature,
                         )
                         .await
                         {

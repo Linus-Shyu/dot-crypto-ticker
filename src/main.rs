@@ -40,12 +40,12 @@ struct DotTextPayload {
 struct PriceData {
     symbol: String,
     price: f64,
-    change_24h: Option<f64>,
+    _change_24h: Option<f64>,
     change_percent_24h: Option<f64>,
-    volume_24h: Option<f64>,
-    market_cap: Option<f64>,
-    high_24h: Option<f64>,
-    low_24h: Option<f64>,
+    _volume_24h: Option<f64>,
+    _market_cap: Option<f64>,
+    _high_24h: Option<f64>,
+    _low_24h: Option<f64>,
 }
 
 async fn fetch_crypto_prices_binance(client: &reqwest::Client) -> Result<Vec<PriceData>> {
@@ -61,7 +61,7 @@ async fn fetch_crypto_prices_binance(client: &reqwest::Client) -> Result<Vec<Pri
 
         #[derive(Deserialize)]
         struct BinanceTicker {
-            symbol: String,
+            _symbol: String,
             #[serde(rename = "lastPrice")]
             price: String,
             #[serde(rename = "priceChange")]
@@ -93,12 +93,12 @@ async fn fetch_crypto_prices_binance(client: &reqwest::Client) -> Result<Vec<Pri
                             results.push(PriceData {
                                 symbol: crypto_symbol.to_string(),
                                 price,
-                                change_24h: data.price_change.parse().ok(),
+                                _change_24h: data.price_change.parse().ok(),
                                 change_percent_24h: data.price_change_percent.parse().ok(),
-                                volume_24h: data.volume.parse().ok(),
-                                market_cap: None,
-                                high_24h: data.high_price.parse().ok(),
-                                low_24h: data.low_price.parse().ok(),
+                                _volume_24h: data.volume.parse().ok(),
+                                _market_cap: None,
+                                _high_24h: data.high_price.parse().ok(),
+                                _low_24h: data.low_price.parse().ok(),
                             });
                         }
                         Err(e) => {
@@ -167,7 +167,7 @@ fn format_price(price: f64) -> String {
         let mut result = String::new();
         let chars: Vec<char> = integer_part.chars().collect();
         for (i, c) in chars.iter().enumerate() {
-            if i > 0 && (chars.len() - i) % 3 == 0 {
+            if i > 0 && (chars.len() - i).is_multiple_of(3) {
                 result.push(',');
             }
             result.push(*c);

@@ -27,7 +27,6 @@ jobs:
         with:
           arch: x64
           toolset: 14.29
-          sdk: 10.0.19041.0
 
       - name: Cargo clippy
         run: |
